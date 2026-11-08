@@ -59,11 +59,17 @@ Experience the celebration:
 </p><!-- Add a screenshot of your website here --><!-- ![Happy Diwali Preview](./assets/preview.png) -->📂 Project Structure
 
 Happy-Diwali/
+
 │
-├── index.html       # Main HTML structure
+
+├── index.html  # Main HTML structure
+
 ├── styles.css       # Styling and CSS illustrations
+
 ├── script.js        # Interactions and fireworks animation
+
 ├── favicon.svg      # Website favicon
+
 └── README.md        # Project documentation
 
 💻 Getting Started
