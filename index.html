@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#210b27" />
+    <title>Happy Diwali — Pritesh Pandya</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap');
+
+      :root {
+        --ink: #fff8e9;
+        --gold: #f8c65c;
+        --saffron: #ef8123;
+        --rose: #ec5d6d;
+        --violet: #341038;
+        --night: #170719;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { min-height: 100%; }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 50% 110%, #74303a 0%, transparent 34rem),
+          radial-gradient(circle at 83% 15%, #562054 0%, transparent 26rem),
+          radial-gradient(circle at 12% 55%, #552043 0%, transparent 30rem),
+          var(--night);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .page { position: relative; isolation: isolate; min-height: 100svh; overflow: hidden; }
+
+      #fireworks { position: fixed; inset: 0; z-index: -2; width: 100%; height: 100%; pointer-events: none; }
+
+      .stars, .stars::before, .stars::after {
+        position: absolute; inset: 0; z-index: -1; content: ""; pointer-events: none;
+        background-image:
+          radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.7px),
+          radial-gradient(circle, rgba(248,198,92,.82) 0 1px, transparent 1.8px),
+          radial-gradient(circle, rgba(255,255,255,.5) 0 .8px, transparent 1.4px);
+        background-size: 129px 129px, 181px 181px, 97px 97px;
+        background-position: 17px 39px, 53px 21px, 72px 11px;
+        opacity: .68;
+        animation: twinkle 5s ease-in-out infinite alternate;
+      }
+      .stars::before { opacity: .37; transform: translate(53px, 87px); animation-delay: -2s; }
+      .stars::after { opacity: .25; transform: translate(-73px, 36px); animation-delay: -4s; }
+
+      .top-rule {
+        position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, transparent, var(--saffron), var(--gold), var(--rose), transparent);
+        box-shadow: 0 0 18px #ffb149;
+      }
+
+      .lantern-row { position: absolute; inset: 0 0 auto; display: flex; justify-content: space-around; pointer-events: none; }
+      .lantern {
+        width: 3px; height: clamp(60px, 13vw, 150px); background: linear-gradient(#f9ca64, #8c3a35);
+        position: relative; opacity: .94; transform-origin: top center; animation: sway 3.6s ease-in-out infinite alternate;
+      }
+      .lantern:nth-child(2) { height: clamp(40px, 8vw, 90px); animation-delay: -.9s; }
+      .lantern:nth-child(3) { height: clamp(70px, 15vw, 165px); animation-delay: -1.6s; }
+      .lantern:nth-child(4) { height: clamp(50px, 10vw, 120px); animation-delay: -2.5s; }
+      .lantern::before {
+        content: ""; position: absolute; top: calc(100% - 2px); left: 50%; transform: translateX(-50%);
+        width: clamp(27px, 4.5vw, 54px); aspect-ratio: .78; border-radius: 45% 45% 42% 42%;
+        background: radial-gradient(circle at 50% 40%, #ffeeb0 0 13%, #f5a22b 34%, #ba402a 70%, #63232c 100%);
+        box-shadow: 0 4px 14px rgba(255,159,49,.44), inset 0 0 8px rgba(255,247,204,.8);
+        border: 1px solid rgba(255,223,142,.7);
+      }
+      .lantern::after { content: ""; position: absolute; top: calc(100% + clamp(31px,5vw,55px)); left: 50%; width: 1px; height: clamp(17px,3vw,34px); background: #e5a648; box-shadow: 0 7px 0 -0.1px #e5a648; }
+
+      main { width: min(960px, 100%); min-height: 100svh; margin: 0 auto; display: grid; place-items: center; padding: clamp(105px, 18vh, 160px) 24px 72px; }
+      .greeting { width: 100%; text-align: center; position: relative; }
+      .eyebrow { margin: 0 0 13px; color: #ffd985; font-size: .72rem; letter-spacing: .34em; font-weight: 600; text-transform: uppercase; animation: rise .7s both; }
+
+      h1 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: clamp(3.8rem, 11.5vw, 8.2rem); font-weight: 600; line-height: .82; letter-spacing: -.06em; text-wrap: balance; animation: rise .9s .12s both; }
+      h1 .happy { display: block; font-size: .42em; letter-spacing: .21em; margin: 0 0 13px .24em; color: #ffeac0; text-transform: uppercase; }
+      h1 .diwali { display: block; background: linear-gradient(110deg, #f0a332 0%, #fff0ab 30%, #f7be49 51%, #f89b4c 73%, #ffe4a7 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 5px 17px rgba(242,137,42,.27)); animation: gold-shine 5s linear infinite; }
+
+      .message { width: min(520px, 100%); margin: 31px auto 0; color: rgba(255,248,233,.83); font-size: clamp(.96rem, 2vw, 1.1rem); line-height: 1.8; animation: rise .8s .31s both; }
+      .message em { color: #ffce61; font-style: normal; }
+
+      .divider { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 29px auto 0; color: var(--gold); animation: rise .8s .43s both; }
+      .divider::before, .divider::after { content: ""; width: clamp(48px, 10vw, 108px); height: 1px; background: linear-gradient(90deg, transparent, currentColor); }
+      .divider::after { transform: scaleX(-1); }
+      .divider svg { width: 25px; height: 25px; filter: drop-shadow(0 0 8px rgba(255,185,51,.75)); }
+
+      .from { margin: 18px 0 0; color: rgba(255,244,214,.76); font-size: .82rem; letter-spacing: .13em; text-transform: uppercase; animation: rise .8s .52s both; }
+      .signature { display: block; margin-top: 1px; color: #ffe0a0; font-family: Sacramento, cursive; font-size: clamp(2.45rem, 6vw, 3.7rem); line-height: .95; letter-spacing: .02em; text-transform: none; }
+
+      .diya-scene { display: flex; justify-content: center; align-items: end; gap: clamp(14px, 4vw, 48px); height: 132px; margin-top: clamp(28px, 5vh, 55px); animation: rise 1s .63s both; }
+      .diya { position: relative; width: clamp(86px, 12vw, 120px); height: 52px; border-radius: 11% 11% 52% 52%; background: linear-gradient(160deg, #ffca6a 0%, #c84d2a 40%, #732233 100%); box-shadow: 0 12px 23px rgba(0,0,0,.27), inset 0 7px 4px rgba(255,239,151,.36); }
+      .diya::before { content: ""; position: absolute; left: 9%; right: 9%; top: -9px; height: 20px; border-radius: 50%; background: linear-gradient(#5b1525, #260817); box-shadow: inset 0 4px 3px rgba(255,194,92,.22); }
+      .diya::after { content: ""; position: absolute; z-index: 1; width: 22px; height: 44px; top: -47px; left: calc(50% - 11px); border-radius: 50% 50% 50% 50% / 66% 66% 34% 34%; transform: rotate(4deg); background: radial-gradient(ellipse at 49% 74%, #fff6b5 0 12%, #ffc13f 23%, #f47727 53%, transparent 73%); filter: drop-shadow(0 0 10px #ff9b25) drop-shadow(0 0 22px rgba(255,125,34,.72)); transform-origin: bottom; animation: flame .75s ease-in-out infinite alternate; }
+      .diya.small { transform: scale(.68) translateY(16px); opacity: .8; }
+      .diya.small::after { animation-delay: -.45s; }
+
+      .rangoli { position: absolute; bottom: -245px; left: 50%; width: min(690px, 118vw); aspect-ratio: 1; transform: translateX(-50%) rotate(0); border-radius: 50%; opacity: .4; background: repeating-conic-gradient(from 4deg, #f6a532 0deg 8deg, transparent 8deg 18deg, #cf3d59 18deg 26deg, transparent 26deg 36deg); -webkit-mask: radial-gradient(transparent 0 32%, #000 33% 35%, transparent 36% 48%, #000 49% 51%, transparent 52% 64%, #000 65% 67%, transparent 68%); mask: radial-gradient(transparent 0 32%, #000 33% 35%, transparent 36% 48%, #000 49% 51%, transparent 52% 64%, #000 65% 67%, transparent 68%); animation: rotate 80s linear infinite; pointer-events: none; }
+      .rangoli::after { content: ""; position: absolute; inset: 35%; border-radius: 50%; background: #f6be52; box-shadow: 0 0 28px #ed662e; }
+
+      .replay { position: fixed; bottom: 22px; right: 23px; z-index: 4; display: inline-grid; place-items: center; width: 42px; height: 42px; cursor: pointer; color: #ffdda1; border: 1px solid rgba(255,214,136,.44); border-radius: 50%; background: rgba(44,12,43,.45); backdrop-filter: blur(10px); transition: .25s ease; }
+      .replay:hover { transform: rotate(35deg) scale(1.08); border-color: #ffda7d; background: rgba(139,48,48,.52); }
+      .replay svg { width: 19px; }
+
+      @keyframes twinkle { to { opacity: .95; } }
+      @keyframes sway { to { transform: rotate(3deg); } }
+      @keyframes gold-shine { to { background-position: -240% 0; } }
+      @keyframes flame { to { transform: rotate(-5deg) scale(1.08,.92); } }
+      @keyframes rotate { to { transform: translateX(-50%) rotate(360deg); } }
+      @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+      @media (max-width: 520px) { .lantern:nth-child(2), .lantern:nth-child(4) { display: none; } .lantern-row { justify-content: space-between; padding: 0 18%; } .diya-scene { gap: 2px; } .replay { bottom: 15px; right: 15px; } }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <canvas id="fireworks" aria-hidden="true"></canvas>
+      <div class="stars" aria-hidden="true"></div>
+      <div class="top-rule"></div>
+      <div class="lantern-row" aria-hidden="true"><i class="lantern"></i><i class="lantern"></i><i class="lantern"></i><i class="lantern"></i></div>
+      <main>
+        <section class="greeting" aria-label="Diwali greeting">
+          <p class="eyebrow">A little light, a lot of love</p>
+          <h1><span class="happy">Happy</span><span class="diwali">Diwali</span></h1>
+          <p class="message">May every <em>diya</em> light up your path with joy, prosperity, and beautiful new beginnings.</p>
+          <div class="divider" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M32 7C24 18 23 25 32 34c9-9 8-16 0-27Z" fill="currentColor"/><path d="M32 33c-17 0-25 5-25 10 0 8 13 14 25 14s25-6 25-14c0-5-8-10-25-10Z" fill="currentColor" opacity=".75"/><path d="M17 41h30" stroke="#3b112d" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <p class="from">With warm wishes <span class="signature">Pritesh Pandya</span></p>
+          <div class="diya-scene" aria-hidden="true"><div class="diya small"></div><div class="diya"></div><div class="diya small"></div></div>
+        </section>
+      </main>
+      <div class="rangoli" aria-hidden="true"></div>
+      <button class="replay" type="button" aria-label="Replay fireworks" title="Replay fireworks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      </button>
+    </div>
+    <script>
+      (() => {
+        const canvas = document.querySelector('#fireworks');
+        const ctx = canvas.getContext('2d');
+        const colours = ['#ffd264', '#ff8462', '#f64e6b', '#f7e8a4', '#bd69e4'];
+        let particles = [], w, h, ratio;
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function resize() {
+          ratio = Math.min(devicePixelRatio || 1, 2);
+          w = innerWidth; h = innerHeight;
+          canvas.width = w * ratio; canvas.height = h * ratio;
+          canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+          ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        }
+        function burst(x = Math.random() * w, y = h * (.12 + Math.random() * .38), count = 42) {
+          for (let i = 0; i < count; i++) {
+            const a = (Math.PI * 2 * i) / count + Math.random() * .18;
+            const speed = 1.1 + Math.random() * 2.7;
+            particles.push({ x, y, vx: Math.cos(a) * speed, vy: Math.sin(a) * speed, life: 1, decay: .011 + Math.random() * .014, size: 1 + Math.random() * 1.55, colour: colours[Math.floor(Math.random() * colours.length)] });
+          }
+        }
+        function frame() {
+          ctx.clearRect(0, 0, w, h);
+          ctx.globalCompositeOperation = 'lighter';
+          particles = particles.filter(p => p.life > 0);
+          for (const p of particles) {
+            p.x += p.vx; p.y += p.vy; p.vy += .035; p.vx *= .992; p.life -= p.decay;
+            ctx.globalAlpha = Math.max(p.life, 0);
+            ctx.fillStyle = p.colour;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.size * p.life + .35, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+          requestAnimationFrame(frame);
+        }
+        function celebrate() {
+          particles = [];
+          burst(w * .2, h * .26, 36);
+          setTimeout(() => burst(w * .79, h * .21, 42), 280);
+          setTimeout(() => burst(w * .5, h * .38, 47), 650);
+        }
+        resize();
+        if (!reduced) { frame(); setTimeout(celebrate, 450); document.querySelector('.replay').addEventListener('click', celebrate); }
+        else { document.querySelector('.replay').hidden = true; }
+        addEventListener('resize', resize);
+      })();
+    </script>
+  </body>
+</html>
