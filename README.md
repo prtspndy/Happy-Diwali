@@ -2,15 +2,9 @@
 
 A small, responsive Diwali greeting page with CSS illustrations and optional canvas fireworks.
 
-## Run locally
+## Live Link
 
-No build tools or dependencies are required. Open `index.html` in a browser, or serve this directory with any static web server, for example:
-
-```sh
-python3 -m http.server 8000
-```
-
-Then visit <http://localhost:8000>.
+- Link 🖇️ : https://happydiwali-pritesh.vercel.app/
 
 ## Deploy
 
