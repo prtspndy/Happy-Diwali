@@ -50,7 +50,7 @@ Vercel| Deployment & hosting
 
 Experience the celebration:
 
-"🪔 Happy Diwali – Visit Website" (https://happydiwali-pritesh.vercel.app/)
+"🪔 Happy Diwali – Visit Website" : https://happydiwali-pritesh.vercel.app/
 
 📸 Preview
 
@@ -59,8 +59,6 @@ Experience the celebration:
 </p><!-- Add a screenshot of your website here --><!-- ![Happy Diwali Preview](./assets/preview.png) -->📂 Project Structure
 
 Happy-Diwali/
-
-│
 
 ├── index.html  # Main HTML structure
 
